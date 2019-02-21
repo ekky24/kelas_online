@@ -15,8 +15,13 @@ Route::get('/', function () {
     return view('akame.index');
 });
 
-Route::get('/register', 'UserController@register');
-Route::post('/register', 'UserController@simpan');
+Route::get('/signin', function () {
+    return view('signin');
+});
+
+Route::get('/signup', function () {
+    return view('signup');
+});
 
 Route::get('/admin', function () {
     return view('admin');
