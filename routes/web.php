@@ -12,8 +12,11 @@
 */
 
 Route::get('/', function () {
-    return view('index');
+    return view('akame.index');
 });
+
+Route::get('/register', 'UserController@register');
+Route::post('/register', 'UserController@simpan');
 
 Route::get('/admin', function () {
     return view('admin');
