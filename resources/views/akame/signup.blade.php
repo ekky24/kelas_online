@@ -1,33 +1,8 @@
-<<!DOCTYPE html>
-<html>
-<head>
-	<title>Sign Up</title>
+@extends('akame.master')
 
-	<!-- Favicon -->
-    <link rel="icon" href="./img/core-img/favicon.ico">
-
-    <!-- Stylesheet -->
-    <link rel="stylesheet" href="style.css">
-
-    <!-- Custom Style CSS -->
-    <link rel="stylesheet" href="css/custom-css/custom.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-</head>
-<body>
-    <!-- Preloader -->
-    <div id="preloader">
-        <div class="loader"></div>
-    </div>
-    <!-- /Preloader -->
-
-    <!-- Header Area Start -->
-    <header class="header-area">
-       @include('includes.navbar')
-    </header>
-
-    <!-- Header Area End -->
-
-	<section class="breadcrumb-area section-padding-80">
+@section('content')
+	
+<section class="breadcrumb-area section-padding-80">
         <div class="container">
             <div class="card">
                 <div class="card-header">
@@ -62,20 +37,4 @@
         </div>	
 	</section>
 
-	<!-- Footer Area Start -->
-	@include('includes.footer')
-	<!-- Footer Area End -->
-
-	<!-- All JS Files -->
-	<!-- jQuery -->
-	<script src="js/jquery-akame.min.js"></script>
-	<!-- Popper -->
-	<script src="js/popper.min.js"></script>
-	<!-- Bootstrap -->
-	<script src="js/bootstrap-akame.min.js"></script>
-	<!-- All Plugins -->
-	<script src="js/akame.bundle.js"></script>
-	<!-- Active -->
-	<script src="js/default-assets/active.js"></script>
-</body>
-</html>
+@endsection

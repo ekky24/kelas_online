@@ -16,17 +16,17 @@ Route::get('/', function () {
 });
 
 Route::get('/signin', function () {
-    return view('signin');
+    return view('akame.signin');
 });
 
 Route::get('/signup', function () {
-    return view('signup');
+    return view('akame.signup');
 });
 
 Route::get('/admin', function () {
-    return view('admin');
+    return view('admin.admin');
 });
 
 Route::get('/post', function () {
-    return view('post');
+    return view('akame.post');
 });
