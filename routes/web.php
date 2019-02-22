@@ -24,6 +24,11 @@ Route::get('/admin', function () {
     return view('admin.admin');
 });
 
+Route::get('/admin_class', function () {
+    return view('admin.class');
+});
+
+
 Route::get('/post', function () {
     return view('akame.post');
 });
