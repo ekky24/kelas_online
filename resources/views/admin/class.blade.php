@@ -56,36 +56,33 @@
   <div class="username-box">
   <p>Create User</p>
     <form method="POST">
+      <input type="text" value="Name Class"></input><br>
+      <div class="radio">
+        <label><input type="radio" name="optradio" checked>Class</label>
+      </div>
+      <div class="radio">
+        <label><input type="radio" name="optradio">Sub Class</label>
+      </div>
       <select>
-        <option selected="selected">Username</option>
+        <option selected="selected">Course</option>
       </select><br>
-      <input type="password" value="password"></input>
     </form>
   </div>
 </section>
 
 <section>
-  <div class="course-box">
-  <p>Manage Course</p>
-    <form method="POST">
-      <select>
-          <option selected="selected">Username</option>
-      </select><br>
-      <select>
-          <option selected="selected">Course</option>
-      </select><br>
-      <div class="row">
-        <div class="col-sm-3">
-          <input type="checkbox" value="course1">Course 1</input>
-        </div>
-        <div class="col-sm-3">
-          <input type="checkbox" value="course2">Course 2</input>
-        </div>
-        <div class="col-sm-3">
-          <input type="checkbox" value="course3">Course 3</input>
-        </div>
-      </div>
-    </form>  
+  <div class="edit-course">
+    <p>Edit Course</p>
+    <div class="row">
+      <div class="col-sm-4">Course</div>
+      <div class="col-sm-4"><button class="btn btn-primary" style="display: inline;">Update</button></div>
+      <div class="col-sm-4"><button class="btn btn-success">Delete</button></div>
+    </div>
+    <div class="row">
+      <div class="col-sm-4">Course 1</div>
+      <div class="col-sm-4"><button class="btn btn-primary" style="display: inline;">Update</button></div>
+      <div class="col-sm-4"><button class="btn btn-success">Delete</button></div>
+    </div>
   </div>
 </section>
 <!--End-Action boxes-->    
