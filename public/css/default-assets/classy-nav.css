@@ -87,6 +87,8 @@ img {
   clear: both;
   position: inherit;
   z-index: 10;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 .classynav ul li.cn-dropdown-item {
   position: relative;
