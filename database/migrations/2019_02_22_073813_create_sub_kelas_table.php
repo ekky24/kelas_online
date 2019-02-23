@@ -17,7 +17,7 @@ class CreateSubKelasTable extends Migration
             $table->increments('id');
             $table->string('nama');
             $table->integer('parent');
-            $table->string('konten')->nullable();
+            $table->text('konten')->nullable();
             $table->string('path')->nullable();
             $table->timestamps();
         });
