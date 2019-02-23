@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSubKelasTable extends Migration
+class CreateEnrollsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class CreateSubKelasTable extends Migration
      */
     public function up()
     {
-        Schema::create('sub_kelas', function (Blueprint $table) {
+        Schema::create('enrolls', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nama');
-            $table->integer('parent');
-            $table->string('konten')->nullable();
-            $table->string('path')->nullable();
+            $table->integer('user_id');
+            $table->integer('sub_kelas_id');
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ class CreateSubKelasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sub_kelas');
+        Schema::dropIfExists('enrolls');
     }
 }
