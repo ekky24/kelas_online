@@ -22,10 +22,9 @@ Route::post('/pengaturan', 'UserController@simpan_pass_baru');
 
 Route::get('/admin', 'AdminController@member');
 
-Route::get('/admin_class', function () {
-    return view('admin.class');
-});
+Route::get('/admin_class', 'AdminController@class');
 
+Route::resource('posts', 'PostController');
 
 Route::get('/post', function () {
     return view('akame.post');

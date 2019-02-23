@@ -7,5 +7,8 @@ use App\SubKelas;
 
 class Kelas extends Model
 {
-    
+    protected $primaryKey = 'id';
+    protected $table = 'kelas';
+
+    protected $fillable = ['nama'];
 }
