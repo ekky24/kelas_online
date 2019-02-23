@@ -22,7 +22,6 @@
   <h1><a href="dashboard.html">Matrix Admin</a></h1>
 </div>
 <!--close-Header-part--> 
-
 <!--start-top-serch-->
 <div id="search">
   <input type="text" placeholder="Search here..."/>
@@ -58,6 +57,9 @@
     <form method="POST">
       <select>
         <option selected="selected">Username</option>
+        @foreach($member as $user)
+          <option>{{$user->username}}</option>
+        @endforeach
       </select><br>
       <input type="password" value="password"></input>
     </form>
@@ -68,8 +70,11 @@
   <div class="course-box">
   <p>Manage Course</p>
     <form method="POST">
-      <select>
-          <option selected="selected">Username</option>
+      <select id="member-username">
+        <option selected="selected">Username</option>
+        @foreach($member as $user)
+          <option>{{$user->username}}</option>
+        @endforeach
       </select><br>
       <select>
           <option selected="selected">Course</option>
@@ -85,7 +90,8 @@
           <input type="checkbox" value="course3">Course 3</input>
         </div>
       </div>
-    </form>  
+    </form> 
+    <p id="lol">adwawd</p> 
   </div>
 </section>
 <!--End-Action boxes-->    
@@ -98,8 +104,24 @@
   <div id="footer" class="span12"> 2013 &copy; Matrix Admin. Brought to you by <a href="http://themedesigner.in">Themedesigner.in</a> </div>
 </div>
 
-<!--end-Footer-part-->
+<script>
+  var member = @json($member->toArray());
+  document.getElementById("lol").innerHTML = Object.values(member[0])[1];
+  var sel = document.getElementById('member-username');
+  var opts = "username";
+  document.getElementById('member-username').onchange = function() {
+    opts = sel.options[sel.selectedIndex].text;
+    var i;
+    for(i=0; i<member.length; i++) {
+      if (opts == Object.values(member[i])[4]) {
+        document.getElementById("password-user").value = Object.values(member[i])[5];
+      }
+    }
+  }
+</script>
 
+<!--end-Footer-part-->
+<script src="js/custom-js/custom-member.js"></script>
 <script src="js/excanvas.min.js"></script> 
 <script src="js/jquery-admin.min.js"></script> 
 <script src="js/jquery.ui.custom.js"></script> 

@@ -20,9 +20,7 @@ Route::get('/signup', 'UserController@signup');
 Route::post('/signup', 'UserController@simpan');
 Route::post('/signin', 'UserController@authenticate');
 
-Route::get('/admin', function () {
-    return view('admin.admin');
-});
+Route::get('/admin', 'AdminController@member');
 
 Route::get('/admin_class', function () {
     return view('admin.class');

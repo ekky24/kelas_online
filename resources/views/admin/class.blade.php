@@ -53,17 +53,17 @@
 
 <!--Action boxes-->
 <section>
-  <div class="username-box">
+  <div class="username-box container">
   <p>Create User</p>
     <form method="POST">
       <input type="text" value="Name Class"></input><br>
       <div class="radio">
-        <label><input type="radio" name="optradio" checked>Class</label>
+        <label><input type="radio" id="radioclass" name="optradio" checked onclick="gone();">Class</label>
       </div>
       <div class="radio">
-        <label><input type="radio" name="optradio">Sub Class</label>
+        <label><input type="radio" id="radiosubclass" name="optradio" onclick="show();">Sub Class</label>
       </div>
-      <select>
+      <select id="course-list">
         <option selected="selected">Course</option>
       </select><br>
     </form>
@@ -96,6 +96,15 @@
 </div>
 
 <!--end-Footer-part-->
+
+<script>
+  function show() {
+    document.getElementById("course-list").style.display = "inline-block";
+  }
+  function gone() {
+    document.getElementById("course-list").style.display = "none";
+  }
+</script>
 
 <script src="js/excanvas.min.js"></script> 
 <script src="js/jquery-admin.min.js"></script> 
