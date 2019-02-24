@@ -21,10 +21,10 @@ Route::post('/signin', 'UserController@authenticate');
 Route::post('/pengaturan', 'UserController@simpan_pass_baru');
 
 Route::get('/admin', 'AdminController@member');
-Route::get('/admin_class', 'AdminController@class');
+Route::post('/admin/success', 'AdminController@store');
+Route::resource('kelas', 'KelasController');
 Route::resource('posts', 'PostController');
 Route::get('/kelas/{kelas_id}', 'SubKelasController@detail');
 Route::get('/post', 'SubKelasController@post');
 Route::get('/get_sub_kelas/{kelas_id}', 'SubKelasController@get_sub_kelas');
 Route::post('/post', 'SubKelasController@simpan_post');
-});
