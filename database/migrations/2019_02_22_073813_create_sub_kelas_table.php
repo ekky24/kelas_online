@@ -15,11 +15,10 @@ class CreateSubKelasTable extends Migration
     {
         Schema::create('sub_kelas', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('kelas_id');
             $table->string('nama');
+            $table->unsignedInteger('parent');
             $table->string('konten')->nullable();
             $table->string('path')->nullable();
-            $table->foreign('kelas_id')->references('id')->on('kelas');
             $table->timestamps();
         });
     }
