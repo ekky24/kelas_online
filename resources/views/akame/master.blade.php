@@ -46,6 +46,7 @@
     <script src="/js/akame.bundle.js"></script>
     <!-- Active -->
     <script src="/js/default-assets/active.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
     <script src="/custom.js"></script>
 
 </body>

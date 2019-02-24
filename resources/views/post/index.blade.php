@@ -20,4 +20,5 @@
 		<h3>No Post Found</h3>
 	@endif
 </div>
+
 @endsection

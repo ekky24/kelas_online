@@ -53,7 +53,8 @@ class UserController extends Controller
     	]);
 
         Auth::logout();
-    	return redirect('/');
+
+    	return redirect('/')->with([ 'msg' => 'register_sukses' ]);
 	}
 
     public function authenticate() {

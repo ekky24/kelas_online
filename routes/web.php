@@ -27,4 +27,13 @@ Route::get('/kelas/{kelas_id}', 'SubKelasController@detail');
 Route::get('/post', 'SubKelasController@post');
 Route::get('/get_sub_kelas/{kelas_id}', 'SubKelasController@get_sub_kelas');
 Route::post('/post', 'SubKelasController@simpan_post');
+
+Route::get('/admin/video/upload', 'VideoController@upload');
+Route::get('/admin/video', 'VideoController@show_all');
+Route::get('/admin/video/{id}/delete', 'VideoController@delete');
+Route::get('/admin/video/{id}', 'VideoController@show');
+Route::post('/admin/video/upload', 'VideoController@simpan');
+
+Route::get('/phpconfig', function() {
+	return view('includes.php_config');
 });

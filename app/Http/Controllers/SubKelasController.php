@@ -50,7 +50,7 @@ class SubKelasController extends Controller
     }
 
     public function get_sub_kelas($kelas_id) {
-        $sub_kelas = SubKelas::where('parent', $kelas_id)->get();
+        $sub_kelas = SubKelas::where('kelas_id', $kelas_id)->get();
         return $sub_kelas;
     }
 
