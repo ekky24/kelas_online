@@ -35,14 +35,14 @@ Last Update: Jan 19, 2018
   --------------------------------------------- */
 /* Import Fonts & All CSS */
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700|Playfair+Display:400,700");
-@import url(css/bootstrap-akame.min.css);
-@import url(css/animate.css);
-@import url(css/default-assets/classy-nav.css);
-@import url(css/default-assets/audioplayer.css);
-@import url(css/owl.carousel.min.css);
-@import url(css/magnific-popup.css);
-@import url(css/font-awesome.min.css);
-@import url(css/style.css);
+@import url(/css/bootstrap-akame.min.css);
+@import url(/css/animate.css);
+@import url(/css/default-assets/classy-nav.css);
+@import url(/css/default-assets/audioplayer.css);
+@import url(/css/owl.carousel.min.css);
+@import url(/css/magnific-popup.css);
+@import url(/css/font-awesome.min.css);
+@import url(/css/style.css);
 /* :: 1.0 Reboot CSS */
 * {
   margin: 0;

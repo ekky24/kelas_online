@@ -12,41 +12,31 @@ use App\Enroll;
 
 class UserController extends Controller
 {
+    public $kelas_arr;
+    public $kelas;
+    public $sub_kelas;
+    public $sub_kelas_get;
+
+    public function __construct() {
+        $this->kelas_arr = [];
+        $this->kelas = "";
+        $this->sub_kelas = "";
+        $this->sub_kelas_get = "";
+    }
+
     public function index() {
-        if(Auth::check()) {
-            // CODE UNTUK MENU KELAS BERDASARKAN USER
-            $kelas_arr = [];
-
-            $sub_kelas_get = Enroll::with('get_sub_kelas')->where('user_id', auth()->user()->id)->get();
-            $kelas = Kelas::all();
-            $sub_kelas = SubKelas::all();
-
-            foreach ($sub_kelas_get as $row) {
-                $kelas_baru = $row->get_sub_kelas->get_parent->id;
-                $is_exist = 0;
-
-                foreach ($kelas_arr as $row_arr) {
-                    if ($kelas_baru == $row_arr) {
-                        $is_exist = 1;
-                    }
-                }
-
-                if ($is_exist == 0) {
-                    array_push($kelas_arr, $kelas_baru);
-                }
-            }
-            return view('akame.index', compact('kelas_arr', 'kelas', 'sub_kelas', 'sub_kelas_get'));
-        }
-
-        return view('akame.index');
+        $this->navbar_change();
+        return view('akame.index')->with(['kelas_arr'=>$this->kelas_arr, 'kelas'=>$this->kelas, 'sub_kelas'=>$this->sub_kelas, 'sub_kelas_get'=>$this->sub_kelas_get]);
     }
 
     public function signup() {
-    	return view('akame.signup');
+        $this->navbar_change();
+    	return view('akame.signup')->with(['kelas_arr'=>$this->kelas_arr, 'kelas'=>$this->kelas, 'sub_kelas'=>$this->sub_kelas, 'sub_kelas_get'=>$this->sub_kelas_get]);
 	}
 
     public function signin() {
-        return view('akame.signin');
+        $this->navbar_change();
+        return view('akame.signin')->with(['kelas_arr'=>$this->kelas_arr, 'kelas'=>$this->kelas, 'sub_kelas'=>$this->sub_kelas, 'sub_kelas_get'=>$this->sub_kelas_get]);
     }
 
 	public function simpan() {
@@ -62,6 +52,7 @@ class UserController extends Controller
     		'no_telp' => request('no_telp')
     	]);
 
+        Auth::logout();
     	return redirect('/');
 	}
 
@@ -108,11 +99,37 @@ class UserController extends Controller
     }
 
     public function pengaturan() {
-        return view('akame.pengaturan');
+        $this->navbar_change();
+        return view('akame.pengaturan')->with(['kelas_arr'=>$this->kelas_arr, 'kelas'=>$this->kelas, 'sub_kelas'=>$this->sub_kelas, 'sub_kelas_get'=>$this->sub_kelas_get]);
     }
 
     public function signout() {
         Auth::logout();
         return redirect('/');
+    }
+
+    public function navbar_change() {
+        // CODE UNTUK MENU KELAS BERDASARKAN USER YANG LOGIN
+        if(Auth::check()) {
+            $this->kelas_arr = [];
+            $this->sub_kelas_get = Enroll::with('get_sub_kelas')->where('user_id', auth()->user()->id)->get();
+            $this->kelas = Kelas::all();
+            $this->sub_kelas = SubKelas::all();
+
+            foreach ($this->sub_kelas_get as $row) {
+                $kelas_baru = $row->get_sub_kelas->get_parent->id;
+                $is_exist = 0;
+
+                foreach ($this->kelas_arr as $row_arr) {
+                    if ($kelas_baru == $row_arr) {
+                        $is_exist = 1;
+                    }
+                }
+
+                if ($is_exist == 0) {
+                    array_push($this->kelas_arr, $kelas_baru);
+                }
+            }
+        }
     }
 }

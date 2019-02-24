@@ -17,7 +17,7 @@ class CreateSubKelasTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('kelas_id');
             $table->string('nama');
-            $table->string('konten')->nullable();
+            $table->text('konten')->nullable();
             $table->string('path')->nullable();
             $table->foreign('kelas_id')->references('id')->on('kelas');
             $table->timestamps();

@@ -6,7 +6,7 @@
                 <div class="col-12 col-sm-6 col-md-4">
                     <div class="single-footer-widget mb-80">
                         <!-- Footer Logo -->
-                        <a href="#" class="footer-logo"><img src="img/core-img/logo.png" alt=""></a>
+                        <a href="#" class="footer-logo"><img src="/img/core-img/logo.png" alt=""></a>
 
                         <p class="mb-30">We would love to serve you and let you enjoy your culinary experience. Excepteur sint occaecat cupidatat non proident.</p>
 

@@ -14,7 +14,7 @@
     <link rel="icon" href="./img/core-img/favicon.ico">
 
     <!-- Stylesheet -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/style.css">
 
 </head>
 
@@ -37,15 +37,16 @@
 
     <!-- All JS Files -->
     <!-- jQuery -->
-    <script src="js/jquery-akame.min.js"></script>
+    <script src="/js/jquery-akame.min.js"></script>
     <!-- Popper -->
-    <script src="js/popper.min.js"></script>
+    <script src="/js/popper.min.js"></script>
     <!-- Bootstrap -->
-    <script src="js/bootstrap-akame.min.js"></script>
+    <script src="/js/bootstrap-akame.min.js"></script>
     <!-- All Plugins -->
-    <script src="js/akame.bundle.js"></script>
+    <script src="/js/akame.bundle.js"></script>
     <!-- Active -->
-    <script src="js/default-assets/active.js"></script>
+    <script src="/js/default-assets/active.js"></script>
+    <script src="/custom.js"></script>
 
 </body>
 
