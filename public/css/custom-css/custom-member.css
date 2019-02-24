@@ -9,3 +9,7 @@
 .edit-course {
 	text-align: center;
 }
+
+#course-list {
+	display: none;
+}
