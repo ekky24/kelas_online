@@ -27,7 +27,8 @@
 <div id="sidebar"><a href="#" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a>
   <ul>
     <li class="active"><a href="/admin"><i class="fas fa-users"></i> <span>Manage Member</span></a> </li>
-    <li> <a href="/admin_class"><i class="fas fa-book"></i>Manage Class</span></a> </li>
+    <li> <a href="/kelas"><i class="fas fa-book"></i>Manage Class</span></a> </li>
+    <li> <a href="/kelas/create"><i class="fas fa-plus-square"></i>Create Class</span></a> </li>
     <li> <a href="/posts"><i class="icon icon-inbox"></i> <span>Post</span></a> </li>
     <li> <a href="/posts/create"><i class="fas fa-plus-square"></i> <span>Create Post</span></a> </li>
     <li> <a href="/admin/video"><i class="icon icon-inbox"></i> <span>Manage Video</span></a> </li>

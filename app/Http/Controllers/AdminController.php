@@ -11,7 +11,8 @@ class AdminController extends Controller
     public function member() {
         $member = User::all();
         $json_member = json_encode($member);
-        return view('admin.admin', compact('member', 'json_member'));
+        $kelas = Kelas::all();
+        return view('admin.admin', compact('member', 'json_member', 'kelas'));
     }
 
     public function class() {
@@ -19,7 +20,7 @@ class AdminController extends Controller
         return view('admin.class', compact('class'));
     }
 
-    public function create_post() {
-        return view('admin.posts');
+    public function store() {
+        return 123;
     }
 }
