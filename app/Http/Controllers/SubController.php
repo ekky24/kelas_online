@@ -3,12 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
-use App\Kelas;
 use App\SubKelas;
+use App\Kelas;
 use App\Post;
 
-class KelasController extends Controller
+class SubController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +16,9 @@ class KelasController extends Controller
      */
     public function index()
     {
-        $kelas = Kelas::all();
-        return view('admin.manage-class', compact('kelas'));
+        $subkelas = SubKelas::all();
+
+        return view('admin.subclass-index', compact('subkelas'));
     }
 
     /**
@@ -28,8 +28,9 @@ class KelasController extends Controller
      */
     public function create()
     {
-        $subclass = SubKelas::all();
-        return view('admin.class', compact('class'));
+        $kelas = Kelas::pluck('nama', 'id');
+
+        return view('admin.create-subkelas', compact('kelas'));
     }
 
     /**
@@ -42,13 +43,15 @@ class KelasController extends Controller
     {
         $this->validate($request, [ 
             'nama' => 'required',
+            'kelas' => 'required',
         ]);
 
-        $class = new Kelas;
-        $class->nama = $request->input('nama');
-        $class->save();
+        $subkelas = new SubKelas;
+        $subkelas->nama = $request->input('nama');
+        $subkelas->parent_id = $request->input('kelas');
+        $subkelas->save();
 
-        return redirect('/kelas')->with('success', 'Post Created');
+        return redirect('/subkelas')->with('success', 'Sub Kelas Created');
     }
 
     /**
@@ -59,10 +62,9 @@ class KelasController extends Controller
      */
     public function show($id)
     {
-        $subkelas = SubKelas::where('parent_id', $id)->get();
-        $kelas = Kelas::find($id);
-        
-        return view('admin.post-list', compact('kelas', 'subkelas'));
+        $post = Post::where('class_id', $id)->get();
+        $selected = SubKelas::find($id);
+        return view('admin.subkelas-list', compact('post', 'selected'));
     }
 
     /**
@@ -73,8 +75,9 @@ class KelasController extends Controller
      */
     public function edit($id)
     {
-        $kelas = Kelas::find($id);
-        return view('admin.edit-class', compact('kelas'));
+        $subkelas = SubKelas::find($id);
+
+        return view('admin.edit-subkelas', compact('subkelas'));
     }
 
     /**
@@ -90,11 +93,11 @@ class KelasController extends Controller
             'nama' => 'required',
         ]);
 
-        $kelas = Kelas::find($id);
-        $kelas->nama = $request->input('nama');
-        $kelas->save();
+        $subkelas = SubKelas::find($id);
+        $subkelas->nama = $request->input('nama');
+        $subkelas->save();
 
-        return redirect('/kelas')->with('success', 'Kelas Updated');
+        return redirect('/subkelas')->with('success', 'Subkelas Successfully Updated');
     }
 
     /**
@@ -105,9 +108,9 @@ class KelasController extends Controller
      */
     public function destroy($id)
     {
-        $kelas = Kelas::find($id);
-        $kelas->delete();
+        $subkelas = SubKelas::find($id);
+        $subkelas->delete();
 
-        return redirect('/kelas')->with('success', 'Kelas Removed');
+        return redirect('/subkelas')->with('success', 'Subkelas Was Deleted Successfully');
     }
 }

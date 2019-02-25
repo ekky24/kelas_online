@@ -1,6 +1,6 @@
 @extends('includes.admin-layout')
 @section('content')
-<div class="container">
+<div class="show-post-box">
 	<a href="/posts" class="btn btn-default">Back To Post</a>
 	<h1>{{ $post->title }}</h1>
 	<img style="width:100px;" src="/storage/cover_image/{{$post->cover_image}}">

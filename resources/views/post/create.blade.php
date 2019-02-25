@@ -1,6 +1,6 @@
 @extends('includes.admin-layout')
 @section('content')
-<div class="container">
+<div class="create-box">
 	<h1>Create Post</h1>
 	{!! Form::open(['action' => 'PostController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
     	<div class="form-group">
@@ -8,8 +8,8 @@
     		{{Form::text('title', '', ['class' => 'input-block-level', 'placeholder' => 'Title'])}}
     	</div>
         <div class="form-group">
-            {{Form::label('kelas', 'Kelas')}}
-            {{Form::select('kelas', $kelas)}}
+            {{Form::label('subkelas', 'Sub Kelas')}}
+            {{Form::select('subkelas', $subkelas)}}
         </div>
     	<div class="form-group">
     		{{Form::label('body', 'Body')}}

@@ -1,6 +1,6 @@
 @extends('includes.admin-layout')
 @section('content')
-<div class="container">
+<div>
 	<h1>Create Post</h1>
 	{!! Form::open(['action' => ['PostController@update', $post->id], 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
     	<div class="form-group">

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Post;
 use App\Kelas;
+use App\SubKelas;
 
 class PostController extends Controller
 {
@@ -27,8 +28,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        $kelas = Kelas::pluck('nama', 'id');
-        return view('post.create', compact('kelas'));
+        $subkelas = SubKelas::pluck('nama', 'id');
+        return view('post.create', compact('subkelas'));
     }
 
     /**
@@ -42,7 +43,7 @@ class PostController extends Controller
         $this->validate($request , [
             'title' => 'required',
             'body' => 'required',
-            'kelas' => 'required',
+            'subkelas' => 'required',
             'cover_image' => 'image|nullable|max:1999',
         ]);
 
@@ -60,7 +61,7 @@ class PostController extends Controller
         $post->title = $request->input('title');
         $post->body = $request->input('body');
         $post->cover_image = $fileNameToStore;
-        $post->class_id = $request->input('kelas');
+        $post->class_id = $request->input('subkelas');
         $post->save();
 
         return redirect('/posts')->with('success', 'Post Created');

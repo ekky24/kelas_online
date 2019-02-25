@@ -1,7 +1,7 @@
 @extends('includes.admin-layout')
 @section('content')
 <section>
-  <div class="edit-course container">
+  <div class="edit-course">
     <h1>Edit Course</h1>
     <hr><br>
     @foreach($kelas as $k)
