@@ -8,10 +8,10 @@ use App\Kelas;
 class SubKelas extends Model
 {
     public function get_parent() {
-        return $this->belongsTo(Kelas::class, 'parent');
+        return $this->belongsTo(Kelas::class, 'kelas_id');
     }
 
     protected $fillable = [
-        'nama', 'parent', 'konten', 'path',
+        'nama', 'kelas_id', 'konten', 'path',
     ];
 }

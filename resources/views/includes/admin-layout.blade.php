@@ -31,6 +31,8 @@
     <li> <a href="/kelas/create"><i class="fas fa-plus-square"></i>Create Class</span></a> </li>
     <li> <a href="/posts"><i class="icon icon-inbox"></i> <span>Post</span></a> </li>
     <li> <a href="/posts/create"><i class="fas fa-plus-square"></i> <span>Create Post</span></a> </li>
+    <li> <a href="/admin/video"><i class="icon icon-inbox"></i> <span>Manage Video</span></a> </li>
+    <li> <a href="/admin/video/upload"><i class="fas fa-plus-square"></i> <span>Upload Video</span></a> </li>
     <li><a href="tables.html"><i class="fas fa-sign-out-alt"></i> <span>Sign Out</span></a></li>
       </ul>
     </li>
@@ -78,10 +80,21 @@
 <script src="/js/matrix.popover.js"></script> 
 <script src="/js/jquery.dataTables.min.js"></script> 
 <script src="/js/matrix.tables.js"></script> 
-<script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
-<script>
-  CKEDITOR.replace( 'article-ckeditor' );
+<script type="text/javascript">
+  $('#post_kelas').change(function() {
+    $('#post_sub_kelas').empty()
+    $('#post_sub_kelas').append('<option disabled selected value> -- Pilih Sub Kelas -- </option>')
+    $.ajax({
+        url: '/get_sub_kelas/' + $(this).val(),
+        type:"GET",
+        success:function(msg){
+          $.each(msg, function(i, item) {
+            $('#post_sub_kelas').append('<option value="' + item.id + '">' + item.nama + '</option>')
+            });
+        },
+        dataType:"json"
+    });
+  });
 </script>
-
 </body>
 </html>
