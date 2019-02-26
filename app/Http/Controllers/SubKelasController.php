@@ -17,14 +17,6 @@ class SubKelasController extends Controller
     public $sub_kelas;
     public $sub_kelas_get;
 
-	public function __construct() {
-        $this->middleware('auth');
-        $this->kelas_arr = [];
-        $this->kelas = "";
-        $this->sub_kelas = "";
-        $this->sub_kelas_get = "";
-    }
-
     public function detail($kelas_id) {
     	$this->navbar_change();
         $detail_kelas = SubKelas::where('id', $kelas_id)->first();

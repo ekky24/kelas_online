@@ -18,7 +18,7 @@ class CreatePostsTable extends Migration
             $table->string('title');
             $table->mediumText('body');
             $table->unsignedInteger('class_id');
-            $table->foreign('class_id')->references('id')->on('kelas')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('class_id')->references('id')->on('sub_kelas')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }
