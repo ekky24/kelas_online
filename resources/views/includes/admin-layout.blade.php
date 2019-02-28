@@ -81,22 +81,29 @@
 <script src="/js/select2.min.js"></script> 
 <script src="/js/matrix.popover.js"></script> 
 <script src="/js/jquery.dataTables.min.js"></script> 
-<script src="/js/matrix.tables.js"></script> 
+<script src="/js/matrix.tables.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 <script type="text/javascript">
-  $('#post_kelas').change(function() {
-    $('#post_sub_kelas').empty()
-    $('#post_sub_kelas').append('<option disabled selected value> -- Pilih Sub Kelas -- </option>')
-    $.ajax({
-        url: '/get_sub_kelas/' + $(this).val(),
-        type:"GET",
-        success:function(msg){
-          $.each(msg, function(i, item) {
-            $('#post_sub_kelas').append('<option value="' + item.id + '">' + item.nama + '</option>')
-            });
-        },
-        dataType:"json"
+  window.onload = function () { 
+    /*$(".btn-danger").click(function(e) {
+      e.preventDefault();
+      Swal.fire({
+        title: 'Are you sure?' + $(this).attr('href'),
+        text: "You won't be able to revert this!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+        window.location.href = $(this).attr('href');
+      })
     });
-  });
+
+    $("#sidebar > ul *").click(function() {
+      $(this).attr('class', 'active')
+    });*/
+  }
 </script>
 </body>
 </html>

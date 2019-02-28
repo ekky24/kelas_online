@@ -1,8 +1,9 @@
 @extends('includes.admin-layout')
 @section('content')
-<div class="container">
+<div class="post-box">
 	<h1>{{ $video->judul }}</h1>
-	<h6>{{ $video->get_sub_kelas->nama }}</h6>
+	<hr><br>
+	<h4>{{ $video->get_post->title }}</h4>
 		<div class="well">
 			<div class="row">
 				<div class="span12 text-center">

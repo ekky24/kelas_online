@@ -16,8 +16,6 @@ class CreateSubKelasTable extends Migration
             $table->string('nama');
             $table->unsignedInteger('parent_id');
             $table->foreign('parent_id')->references('id')->on('kelas')->onDelete('cascade')->onUpdate('cascade');
-            $table->string('konten')->nullable();
-            $table->string('path')->nullable();
             $table->timestamps();
         });
     }

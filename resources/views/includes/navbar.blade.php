@@ -32,7 +32,7 @@
                                                     <li><a href="#">- {{ $row_kelas->nama }}</a>
                                                         <ul class="dropdown">
                                                         @foreach($sub_kelas as $row_sub_kelas)
-                                                            @if($row_sub_kelas->kelas_id == $row_kelas->id)
+                                                            @if($row_sub_kelas->parent_id == $row_kelas->id)
                                                                 @foreach($sub_kelas_get as $row_sub_kelas_get)
                                                                     @if($row_sub_kelas->id == $row_sub_kelas_get->get_sub_kelas->id)
                                                                         <li><a href="kelas/{{ $row_sub_kelas->id }}">- {{ $row_sub_kelas->nama }}</a></li>

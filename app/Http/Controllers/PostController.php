@@ -139,7 +139,7 @@ class PostController extends Controller
         $post = Post::find($id);
 
         if ($post->cover_image != 'noimage.jpg') {
-            Storage::delete('public/cover_image/'.$post->cover_image);
+            unlink(storage_path('app/public/cover_image/'.$post->cover_image));
         }
 
         $post->delete();

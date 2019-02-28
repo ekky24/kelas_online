@@ -15,7 +15,8 @@ class CreateVideosTable extends Migration
     {
         Schema::create('videos', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('sub_kelas_id');
+            $table->unsignedInteger('post_id');
+            $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade')->onUpdate('cascade');
             $table->string('judul')->nullable();
             $table->string('path')->nullable();
             $table->timestamps();

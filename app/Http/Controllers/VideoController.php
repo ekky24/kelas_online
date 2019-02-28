@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use App;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use App\User;
-use App\Kelas;
+use App\Post;
 use App\SubKelas;
 use App\Enroll;
 use App\Video;
@@ -14,27 +15,26 @@ use App\Video;
 class VideoController extends Controller
 {
 	public function show_all() {
-		$video = Video::with('get_sub_kelas')->orderBy('created_at','dsc')->get();
-        return view('admin.all_video', compact('video'));
+		$video = Video::with('get_post')->orderBy('created_at','dsc')->get();
+        return view('admin.manage-video', compact('video'));
 	}
 
 	public function show($id) {
         // https://laracasts.com/discuss/channels/laravel/playing-video-problem
-		$video = Video::with('get_sub_kelas')->find($id);
+		$video = Video::with('get_post')->find($id);
         $path = '/storage/materi_video/'. $video->path;
-        print($path);
-    	return view('admin.show_video', compact('video', 'path'));
+    	return view('admin.show-video', compact('video', 'path'));
 	}
 
     public function upload() {
-    	$kelas = Kelas::all();
-    	return view('admin.video', compact('kelas'));
+    	$post = Post::all();
+    	return view('admin.upload-video', compact('post'));
     }
 
     public function simpan(Request $request) {
     	// PERLU UBAH KONFIGURASI DI PHP.INI (POST_SIZE DAN MAX UPLOAD SIZE)
     	$this->validate($request , [
-            'sub_kelas_id' => 'required',
+            'post_id' => 'required',
             'judul' => 'nullable',
             'materi_video' => 'required|max:200000',
         ]);
@@ -50,7 +50,7 @@ class VideoController extends Controller
         }
 
         $video = new Video;
-        $video->sub_kelas_id = $request->input('sub_kelas_id');
+        $video->post_id = $request->input('post_id');
         $video->judul = $request->input('judul');
         $video->path = $fileNameToStore;
         $video->save();
@@ -60,7 +60,9 @@ class VideoController extends Controller
 
     public function delete($id) {
     	$video = Video::find($id);
+        unlink(storage_path('app/public/materi_video/'.$video->path));
     	$video->delete();
+
     	return redirect('/admin')->with('success', 'Video Deleted');
     }
 }
