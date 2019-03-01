@@ -41,8 +41,8 @@ class SubKelasController extends Controller
         return redirect('/');
     }
 
-    public function get_sub_kelas($kelas_id) {
-        $sub_kelas = SubKelas::where('kelas_id', $kelas_id)->get();
+    public function get_sub_kelas($parent_id) {
+        $sub_kelas = SubKelas::where('parent_id', $parent_id)->get();
         return $sub_kelas;
     }
 

@@ -21,6 +21,7 @@ Route::post('/signin', 'UserController@authenticate');
 Route::post('/pengaturan', 'UserController@simpan_pass_baru');
 
 Route::get('/admin', 'AdminController@member');
+Route::post('/admin', 'AdminController@store_course');
 Route::post('/admin/success', 'AdminController@store');
 Route::resource('kelas', 'KelasController');
 Route::resource('posts', 'PostController');
@@ -34,6 +35,7 @@ Route::get('/admin/video/upload', 'VideoController@upload');
 Route::get('/admin/video', 'VideoController@show_all');
 Route::get('/admin/video/{id}/delete', 'VideoController@delete');
 Route::get('/admin/video/{id}', 'VideoController@show');
+Route::get('/enroll', 'EnrollController@show_all');
 Route::post('/admin/video/upload', 'VideoController@simpan');
 
 Route::get('/phpconfig', function() {

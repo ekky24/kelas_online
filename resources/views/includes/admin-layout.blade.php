@@ -27,6 +27,7 @@
 <div id="sidebar"><a href="#" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a>
   <ul>
     <li class="active"><a href="/admin"><i class="fas fa-users"></i> <span>Manage Member</span></a> </li>
+    <li> <a href="/enroll"><i class="icon icon-inbox"></i> <span>Show Enrollment</span></a> </li>
     <li> <a href="/kelas"><i class="fas fa-book"></i>Manage Class</span></a> </li>
     <li> <a href="/kelas/create"><i class="fas fa-plus-square"></i>Create Class</span></a> </li>
     <li> <a href="/subkelas"><i class="fas fa-book"></i>Manage SubClass</span></a> </li>
@@ -103,6 +104,28 @@
     $("#sidebar > ul *").click(function() {
       $(this).attr('class', 'active')
     });*/
+
+    $(".largerCheckbox").click(function() {
+      if($(this).prop("checked") == true){
+        /*$.ajax({
+            url: '/get_sub_kelas/' + $(this).val(),
+            type:"GET",
+            success:function(msg){
+              //$('#checkbox_sub_kelas').append('<h5>' +'hahahah'+ '</h5>');
+              $.each(msg, function(i, item) {
+                $('.checkbox_sub_kelas').append('<input type="checkbox" value="' + item.id + '">' + item.nama + '</input>');
+              });
+
+            },  
+            dataType:"json"
+        });*/
+        $('#checkbox_sub_kelas' + $(this).val()).css('display', 'block');
+      }
+      else if($(this).prop("checked") == false){
+        $('#checkbox_sub_kelas' + $(this).val()).css('display', 'none');
+        //$('#checkbox_sub_kelas' + $(this).val()).children().prop('checked', 'true');
+      }
+    });
   }
 </script>
 </body>
