@@ -30,9 +30,11 @@ Route::get('/post', 'SubKelasController@post');
 Route::get('/get_sub_kelas/{kelas_id}', 'SubKelasController@get_sub_kelas');
 Route::post('/post', 'SubKelasController@simpan_post');
 Route::resource('subkelas', 'SubController');
+Route::resource('video', 'VideoController');
 
 Route::get('/admin/video/upload', 'VideoController@upload');
 Route::get('/admin/video', 'VideoController@show_all');
+Route::get('/admin/video/{id}/edit', 'VideoController@edit');
 Route::get('/admin/video/{id}/delete', 'VideoController@delete');
 Route::get('/admin/video/{id}', 'VideoController@show');
 Route::get('/enroll', 'EnrollController@show_all');

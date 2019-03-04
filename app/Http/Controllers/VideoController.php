@@ -58,6 +58,48 @@ class VideoController extends Controller
         return redirect('/admin')->with('success', 'Video Uploaded');
     }
 
+    public function edit($id) {
+        $video = Video::find($id);
+        $post = Post::pluck('title', 'id');
+        
+        return view('admin.edit-video', compact('video', 'post'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $this->validate($request, [
+            'judul' => 'required',
+            'post_id' => 'required',
+            'materi_video' => 'required',
+        ]);
+
+        if ($request->hasFile('materi_video')) {
+            $filenameWithExt = $request->file('materi_video')->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            $extension = $request->file('materi_video')->getClientOriginalExtension();
+            $fileNameToStore = time().'.'.$extension;
+            $path = $request->file('materi_video')->storeAs('/public/materi_video', $fileNameToStore);
+        } else {
+            $fileNameToStore = 'noimage.jpg';
+        }
+
+        $video = Video::find($id);
+        unlink(storage_path('app/public/materi_video/'.$video->path));
+        $video->judul = $request->input('judul');
+        $video->post_id = $request->input('post_id');
+        $video->path = $fileNameToStore;
+        $video->save();
+
+        return redirect('/admin')->with('success', 'Video Successfully Updated');
+    }
+
     public function delete($id) {
     	$video = Video::find($id);
         unlink(storage_path('app/public/materi_video/'.$video->path));

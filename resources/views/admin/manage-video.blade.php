@@ -10,6 +10,7 @@
 					<div class="span2" style="text-align: left;">
 						<h3><a href="/admin/video/{{ $row->id }}">{{ $row->judul }}</a></h3>
 						<p>{{ $row->get_post->title }}</p>
+						<a class="btn btn-primary" href="/admin/video/{{$row->id}}/edit">Edit</a>
 						<a class="btn btn-danger" href="/admin/video/{{$row->id}}/delete">Hapus</a>
 					</div>
 				</div>

@@ -76,8 +76,9 @@ class SubController extends Controller
     public function edit($id)
     {
         $subkelas = SubKelas::find($id);
+        $kelas = Kelas::pluck('nama', 'id');
 
-        return view('admin.edit-subkelas', compact('subkelas'));
+        return view('admin.edit-subkelas', compact('subkelas', 'kelas'));
     }
 
     /**
@@ -91,10 +92,12 @@ class SubController extends Controller
     {
         $this->validate($request, [
             'nama' => 'required',
+            'kelas' => 'required',
         ]);
 
         $subkelas = SubKelas::find($id);
         $subkelas->nama = $request->input('nama');
+        $subkelas->parent_id = $request->input('kelas');
         $subkelas->save();
 
         return redirect('/subkelas')->with('success', 'Subkelas Successfully Updated');
