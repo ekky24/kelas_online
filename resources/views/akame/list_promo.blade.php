@@ -5,7 +5,7 @@
 	@foreach($promo as $p)
 		<div>
 			<h4>{{$p->name}}</h4>
-			<form method="get" action="/public/materi_promo/{{$p->file}}">
+			<form method="get" action="download/{{$p->file}}">
 				<button type="submit" class="btn-primary" style="display: inline;">Download</button>
 			</form>
 		</div>

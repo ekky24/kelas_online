@@ -6,6 +6,7 @@ use App;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
 use App\User;
 use App\Kelas;
 use App\SubKelas;
@@ -139,9 +140,8 @@ class UserController extends Controller
         $user->save();
 
         $status = true;
-        return redirect('/promo')->with(['status' => $status]);
+        return redirect('/list_promo')->with(['status' => $status]);
     }
-
     public function daftar_promo() {
         return view('akame.daftar_promo');
     }
@@ -150,5 +150,9 @@ class UserController extends Controller
         $status = Session::get('status');
         $promo = Promo::all();
         return view('akame.list_promo', compact('status', 'promo'));
+    }
+
+    public function download($filename) {
+        return Storage::download('public/materi_promo/'.$filename);
     }
 }
