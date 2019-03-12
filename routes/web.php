@@ -33,7 +33,12 @@ Route::post('/post', 'SubKelasController@simpan_post');
 
 Route::resource('subkelas', 'SubController');
 Route::resource('video', 'VideoController');
+Route::resource('promo', 'PromoController');
 
+Route::get('/admin/promo/upload', 'PromoController@upload');
+Route::get('/admin/promo', 'PromoController@show_all');
+Route::get('/admin/promo/{id}/delete', 'PromoController@delete');
+Route::get('/admin/promo/{id}/edit', 'PromoController@edit');
 Route::get('/admin/video/upload', 'VideoController@upload');
 Route::get('/admin/video', 'VideoController@show_all');
 Route::get('/admin/video/{id}/edit', 'VideoController@edit');
@@ -41,6 +46,7 @@ Route::get('/admin/video/{id}/delete', 'VideoController@delete');
 Route::get('/admin/video/{id}', 'VideoController@show');
 Route::get('/enroll', 'EnrollController@show_all');
 Route::post('/admin/video/upload', 'VideoController@simpan');
+Route::post('/admin/promo/upload', 'PromoController@simpan');
 
 Route::get('/phpconfig', function() {
 	return view('includes.php_config');
