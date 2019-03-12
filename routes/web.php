@@ -27,4 +27,3 @@ Route::get('/kelas/{kelas_id}', 'SubKelasController@detail');
 Route::get('/post', 'SubKelasController@post');
 Route::get('/get_sub_kelas/{kelas_id}', 'SubKelasController@get_sub_kelas');
 Route::post('/post', 'SubKelasController@simpan_post');
-});
