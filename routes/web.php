@@ -30,6 +30,7 @@ Route::get('/kelas/{kelas_id}', 'SubKelasController@detail');
 Route::get('/post', 'SubKelasController@post');
 Route::get('/get_sub_kelas/{kelas_id}', 'SubKelasController@get_sub_kelas');
 Route::post('/post', 'SubKelasController@simpan_post');
+
 Route::resource('subkelas', 'SubController');
 Route::resource('video', 'VideoController');
 
@@ -44,3 +45,4 @@ Route::post('/admin/video/upload', 'VideoController@simpan');
 Route::get('/phpconfig', function() {
 	return view('includes.php_config');
 });
+
