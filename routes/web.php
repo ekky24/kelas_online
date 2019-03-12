@@ -18,6 +18,7 @@ Route::get('/signout', 'UserController@signout');
 Route::get('/pengaturan', 'UserController@pengaturan');
 Route::post('/signup', 'UserController@simpan');
 Route::post('/signin', 'UserController@authenticate');
+Route::post('/signin', 'UserController@signup_promo');
 Route::post('/pengaturan', 'UserController@simpan_pass_baru');
 
 Route::get('/admin', 'AdminController@member');

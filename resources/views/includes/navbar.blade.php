@@ -23,6 +23,7 @@
                     <div class="classynav">
                         <ul id="nav">
                             <li class="active"><a href="/">Home</a></li>
+                            <li class="active"><a href="/daftar_promo">Promo</a></li>
                             @if(Auth::check())
                                 <li>Kelas  <i class="fas fa-caret-down"></i>
                                     <ul class="dropdown">
