@@ -17,14 +17,6 @@ class SubKelasController extends Controller
     public $sub_kelas;
     public $sub_kelas_get;
 
-	public function __construct() {
-        $this->middleware('auth');
-        $this->kelas_arr = [];
-        $this->kelas = "";
-        $this->sub_kelas = "";
-        $this->sub_kelas_get = "";
-    }
-
     public function detail($kelas_id) {
     	$this->navbar_change();
         $detail_kelas = SubKelas::where('id', $kelas_id)->first();
@@ -49,8 +41,8 @@ class SubKelasController extends Controller
         return redirect('/');
     }
 
-    public function get_sub_kelas($kelas_id) {
-        $sub_kelas = SubKelas::where('parent', $kelas_id)->get();
+    public function get_sub_kelas($parent_id) {
+        $sub_kelas = SubKelas::where('parent_id', $parent_id)->get();
         return $sub_kelas;
     }
 

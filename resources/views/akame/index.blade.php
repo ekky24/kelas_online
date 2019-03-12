@@ -125,4 +125,18 @@
     </section>
     <!-- Call To Action Area End -->
 
+
+@if(session()->get( 'msg' ) == 'register_sukses')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+    <script type="text/javascript">
+        setTimeout(function() {
+            Swal.fire(
+              'Sign Up Berhasil!',
+              'Silahkan tunggu email konfirmasi dari admin.',
+              'success'
+            )
+        }, 1000)
+    </script>
+@endif
+
 @endsection

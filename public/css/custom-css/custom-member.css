@@ -1,15 +1,26 @@
 .username-box {
 	text-align: center;
+	padding: 30px;
 }
 
 .course-box {
 	text-align: center;
+	padding: 30px;
+}
+.create-box, .post-box, .post-list-box, .subkelas-create-box, .subkelas-list-box, .show-post-box, .edit-subkelas {
+	padding: 30px;
 }
 
 .edit-course {
-	text-align: center;
+	padding: 30px;
 }
 
 #course-list {
 	display: none;
+}
+
+input.largerCheckbox
+{
+	width: 20px;
+	height: 20px;
 }

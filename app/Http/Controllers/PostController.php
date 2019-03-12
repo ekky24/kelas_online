@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Post;
+use App\Kelas;
+use App\SubKelas;
 
 class PostController extends Controller
 {
@@ -26,7 +28,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('post.create');
+        $subkelas = SubKelas::pluck('nama', 'id');
+        return view('post.create', compact('subkelas'));
     }
 
     /**
@@ -40,6 +43,7 @@ class PostController extends Controller
         $this->validate($request , [
             'title' => 'required',
             'body' => 'required',
+            'subkelas' => 'required',
             'cover_image' => 'image|nullable|max:1999',
         ]);
 
@@ -57,6 +61,7 @@ class PostController extends Controller
         $post->title = $request->input('title');
         $post->body = $request->input('body');
         $post->cover_image = $fileNameToStore;
+        $post->class_id = $request->input('subkelas');
         $post->save();
 
         return redirect('/posts')->with('success', 'Post Created');
@@ -83,7 +88,8 @@ class PostController extends Controller
     public function edit($id)
     {
         $post = Post::find($id);
-        return view('post.edit', compact('post'));
+        $subkelas = SubKelas::pluck('nama', 'id');
+        return view('post.edit', compact('post', 'subkelas'));
     }
 
     /**
@@ -98,6 +104,7 @@ class PostController extends Controller
         $this->validate($request , [
             'title' => 'required',
             'body' => 'required',
+            'subkelas' => 'required',
             'cover_image' => 'image|nullable|max:1999',
         ]);
 
@@ -111,6 +118,7 @@ class PostController extends Controller
 
         $post = Post::find($id);
         $post->title = $request->input('title');
+        $post->class_id = $request->input('subkelas');
         $post->body = $request->input('body');
         if ($request->hasFile('cover_image')) {
             if ($post->cover_image != 'noimage.jpg') {
@@ -134,7 +142,7 @@ class PostController extends Controller
         $post = Post::find($id);
 
         if ($post->cover_image != 'noimage.jpg') {
-            Storage::delete('public/cover_image/'.$post->cover_image);
+            unlink(storage_path('app/public/cover_image/'.$post->cover_image));
         }
 
         $post->delete();

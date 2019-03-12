@@ -27,9 +27,15 @@
 <div id="sidebar"><a href="#" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a>
   <ul>
     <li class="active"><a href="/admin"><i class="fas fa-users"></i> <span>Manage Member</span></a> </li>
-    <li> <a href="/admin_class"><i class="fas fa-book"></i>Manage Class</span></a> </li>
+    <li> <a href="/enroll"><i class="icon icon-inbox"></i> <span>Show Enrollment</span></a> </li>
+    <li> <a href="/kelas"><i class="fas fa-book"></i>Manage Class</span></a> </li>
+    <li> <a href="/kelas/create"><i class="fas fa-plus-square"></i>Create Class</span></a> </li>
+    <li> <a href="/subkelas"><i class="fas fa-book"></i>Manage SubClass</span></a> </li>
+    <li> <a href="/subkelas/create"><i class="fas fa-plus-square"></i>Create SubClass</span></a> </li>
     <li> <a href="/posts"><i class="icon icon-inbox"></i> <span>Post</span></a> </li>
     <li> <a href="/posts/create"><i class="fas fa-plus-square"></i> <span>Create Post</span></a> </li>
+    <li> <a href="/admin/video"><i class="icon icon-inbox"></i> <span>Manage Video</span></a> </li>
+    <li> <a href="/admin/video/upload"><i class="fas fa-plus-square"></i> <span>Upload Video</span></a> </li>
     <li><a href="tables.html"><i class="fas fa-sign-out-alt"></i> <span>Sign Out</span></a></li>
       </ul>
     </li>
@@ -76,11 +82,51 @@
 <script src="/js/select2.min.js"></script> 
 <script src="/js/matrix.popover.js"></script> 
 <script src="/js/jquery.dataTables.min.js"></script> 
-<script src="/js/matrix.tables.js"></script> 
-<script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
-<script>
-  CKEDITOR.replace( 'article-ckeditor' );
-</script>
+<script src="/js/matrix.tables.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+<script type="text/javascript">
+  window.onload = function () { 
+    /*$(".btn-danger").click(function(e) {
+      e.preventDefault();
+      Swal.fire({
+        title: 'Are you sure?' + $(this).attr('href'),
+        text: "You won't be able to revert this!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+        window.location.href = $(this).attr('href');
+      })
+    });
 
+    $("#sidebar > ul *").click(function() {
+      $(this).attr('class', 'active')
+    });*/
+
+    $(".largerCheckbox").click(function() {
+      if($(this).prop("checked") == true){
+        /*$.ajax({
+            url: '/get_sub_kelas/' + $(this).val(),
+            type:"GET",
+            success:function(msg){
+              //$('#checkbox_sub_kelas').append('<h5>' +'hahahah'+ '</h5>');
+              $.each(msg, function(i, item) {
+                $('.checkbox_sub_kelas').append('<input type="checkbox" value="' + item.id + '">' + item.nama + '</input>');
+              });
+
+            },  
+            dataType:"json"
+        });*/
+        $('#checkbox_sub_kelas' + $(this).val()).css('display', 'block');
+      }
+      else if($(this).prop("checked") == false){
+        $('#checkbox_sub_kelas' + $(this).val()).css('display', 'none');
+        //$('#checkbox_sub_kelas' + $(this).val()).children().prop('checked', 'true');
+      }
+    });
+  }
+</script>
 </body>
 </html>

@@ -9,6 +9,7 @@ use App\User;
 use App\Kelas;
 use App\SubKelas;
 use App\Enroll;
+use Hash;
 
 class UserController extends Controller
 {
@@ -53,30 +54,18 @@ class UserController extends Controller
     	]);
 
         Auth::logout();
-    	return redirect('/');
+
+    	return redirect('/')->with([ 'msg' => 'register_sukses' ]);
 	}
 
     public function authenticate() {
-        $user = User::where('username', request('username'))
-            ->where('password', request('password'))
-            ->first();
-
-        if($user) {
-            Auth::loginUsingId($user->id);
-            return redirect('/');
-        } else {
-            return redirect()->back()->withErrors([
-                'message' => 'Username atau Password yang anda masukkan salah.',
-            ]);
-        }
-
-        /*if (Auth::attempt(['username' => request('username'), 'password' => request('password')])) {
+        if (Auth::attempt(['username' => request('username'), 'password' => request('password')])) {
             return redirect('/');
         }
 
         return redirect()->back()->withErrors([
             'message' => request('password'),
-        ]);*/
+        ]);
     }
 
     public function simpan_pass_baru() {
@@ -92,7 +81,7 @@ class UserController extends Controller
         }
         
         $user = auth()->user();
-        $user->password = request('password');
+        $user->password = Hash::make(request('password'));
         $user->save();
 
         return redirect('/');

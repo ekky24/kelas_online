@@ -15,8 +15,10 @@ class CreateEnrollsTable extends Migration
     {
         Schema::create('enrolls', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id');
-            $table->integer('sub_kelas_id');
+            $table->unsignedInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->unsignedInteger('sub_kelas_id');
+            $table->foreign('sub_kelas_id')->references('id')->on('sub_kelas')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }
