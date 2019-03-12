@@ -22,6 +22,6 @@
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
-    @include('includes/error')z
+    @include('includes/error')
 </div>
 @endsection
