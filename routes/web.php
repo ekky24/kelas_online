@@ -16,10 +16,12 @@ Route::get('/signin', 'UserController@signin');
 Route::get('/signup', 'UserController@signup');
 Route::get('/signout', 'UserController@signout');
 Route::get('/pengaturan', 'UserController@pengaturan');
+Route::get('/daftar_promo', 'UserController@daftar_promo');
+Route::get('/promo', 'UserController@list_promo');
 Route::post('/signup', 'UserController@simpan');
 Route::post('/signin', 'UserController@authenticate');
-Route::post('/signin', 'UserController@signup_promo');
 Route::post('/pengaturan', 'UserController@simpan_pass_baru');
+Route::post('/daftar_promo', 'UserController@submit_promo');
 
 Route::get('/admin', 'AdminController@member');
 Route::post('/admin', 'AdminController@store_course');

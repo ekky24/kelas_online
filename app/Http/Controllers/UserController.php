@@ -5,10 +5,13 @@ namespace App\Http\Controllers;
 use App;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use App\User;
 use App\Kelas;
 use App\SubKelas;
 use App\Enroll;
+use App\UserPromo;
+use App\Promo;
 use Hash;
 
 class UserController extends Controller
@@ -120,5 +123,32 @@ class UserController extends Controller
                 }
             }
         }
+    }
+
+    public function submit_promo() {
+        $this->validate(request(), [
+            'email' => 'required',
+            'no_telp' => 'required',
+            'nama' => 'required',
+        ]);
+
+        $user = new UserPromo;
+        $user->email = request('email');
+        $user->no_telp = request('no_telp');
+        $user->nama = request('nama');
+        $user->save();
+
+        $status = true;
+        return redirect('/promo')->with(['status' => $status]);
+    }
+
+    public function daftar_promo() {
+        return view('akame.daftar_promo');
+    }
+
+    public function list_promo() {
+        $status = Session::get('status');
+        $promo = Promo::all();
+        return view('akame.list_promo', compact('status', 'promo'));
     }
 }
