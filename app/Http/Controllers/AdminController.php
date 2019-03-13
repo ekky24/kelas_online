@@ -55,20 +55,4 @@ class AdminController extends Controller
         
         return redirect('/admin')->with('success', 'Enrollment Berhasil Ditambahkan');
     }
-
-    public function sign_promo() {
-    $this->validate(request(), [
-        'email' => 'required',
-        'no_telp' => 'required',
-        'nama' => 'required',
-    ]);
-
-    $user = new UserPromo;
-    $user->email = $request->input('email');
-    $user->no_telp = $request->input('no_telp');
-    $user->nama = $request->input('nama');
-    $user->save();
-
-    return redirect('/daftar_promo')->with('success', 'Silahkan ambil promo Anda.');
-    }
 }
