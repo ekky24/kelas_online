@@ -16,7 +16,7 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 </head>
 <body>
-
+@if(Auth::check() and Auth::user()->username == 'admintrio')
 <!--Header-part-->
 <div id="header">
   <h1><a href="dashboard.html">Matrix Admin</a></h1>
@@ -28,6 +28,7 @@
   <ul>
     <li class="active"><a href="/admin"><i class="fas fa-users"></i> <span>Manage Member</span></a> </li>
     <li> <a href="/enroll"><i class="icon icon-inbox"></i> <span>Show Enrollment</span></a> </li>
+    <li> <a href="/list_user_promo"><i class="icon icon-inbox"></i> <span>Show User Promo</span></a> </li>
     <li> <a href="/kelas"><i class="fas fa-book"></i>Manage Class</span></a> </li>
     <li> <a href="/kelas/create"><i class="fas fa-plus-square"></i>Create Class</span></a> </li>
     <li> <a href="/subkelas"><i class="fas fa-book"></i>Manage SubClass</span></a> </li>
@@ -38,7 +39,7 @@
     <li> <a href="/admin/video/upload"><i class="fas fa-plus-square"></i> <span>Upload Video</span></a> </li>
     <li> <a href="/admin/promo"><i class="icon icon-inbox"></i> <span>Manage Promo</span></a> </li>
     <li> <a href="/admin/promo/upload"><i class="fas fa-plus-square"></i> <span>Upload Promo</span></a> </li>
-    <li><a href="tables.html"><i class="fas fa-sign-out-alt"></i> <span>Sign Out</span></a></li>
+    <li><a href="/admin_signout"><i class="fas fa-sign-out-alt"></i> <span>Sign Out</span></a></li>
       </ul>
     </li>
   </ul>
@@ -130,5 +131,10 @@
     });
   }
 </script>
+@else
+<div class="container">
+  <h3>You dont have any permission</h3>
+</div>
+@endif
 </body>
 </html>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Kelas; 
 use App\SubKelas; 
@@ -32,12 +33,16 @@ class AdminController extends Controller
     		'password' => 'required',
     		'email' => 'required',
     	]);
-    	$user = User::where('email', $request->input('email'))->first();
-    	$user->username = $request->input('username');
-    	$password = Hash::make($request->input('password'));
-    	$user->password = $password;
-    	$user->save();
-        return redirect('/admin')->with('success', 'User Created Successfully');
+        if (is_null($user = User::where('email', $request->input('email'))->first())) {
+            return redirect('/admin')->with('error', 'Email is not valid');
+        } else {
+            $user = User::where('email', $request->input('email'))->first();
+            $user->username = $request->input('username');
+            $password = Hash::make($request->input('password'));
+            $user->password = $password;
+            $user->save();
+            return redirect('/admin')->with('success', 'User Created Successfully');
+        }
     }
 
     public function store_course(Request $request) {
@@ -54,5 +59,15 @@ class AdminController extends Controller
         }
         
         return redirect('/admin')->with('success', 'Enrollment Berhasil Ditambahkan');
+    }
+
+    public function admin_signout() {
+        Auth::logout();
+        return redirect('/');
+    }
+
+    public function get_user_promo() {
+        $userpromo = UserPromo::all();
+        return view('admin.show_promo_user', compact('userpromo'));
     }
 }
