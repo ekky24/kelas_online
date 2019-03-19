@@ -14,6 +14,7 @@ use App\Enroll;
 use App\UserPromo;
 use App\Promo;
 use App\Post;
+use App\Video;
 use Hash;
 
 class UserController extends Controller
@@ -73,7 +74,7 @@ class UserController extends Controller
         }
 
         return redirect()->back()->withErrors([
-            'message' => request('password'),
+            'message' => 'Username atau Password anda salah. Mohon ulangi kembali.',
         ]);
     }
 
@@ -148,13 +149,15 @@ class UserController extends Controller
         return redirect('/list_promo')->with(['status' => $status]);
     }
     public function daftar_promo() {
-        return view('akame.daftar_promo');
+        $this->navbar_change();
+        return view('akame.daftar_promo')->with(['kelas_arr'=>$this->kelas_arr, 'kelas'=>$this->kelas, 'sub_kelas'=>$this->sub_kelas, 'sub_kelas_get'=>$this->sub_kelas_get]);
     }
 
     public function list_promo() {
+        $this->navbar_change();
         $status = Session::get('status');
         $promo = Promo::all();
-        return view('akame.list_promo', compact('status', 'promo'));
+        return view('akame.list_promo', compact('status', 'promo'))->with(['kelas_arr'=>$this->kelas_arr, 'kelas'=>$this->kelas, 'sub_kelas'=>$this->sub_kelas, 'sub_kelas_get'=>$this->sub_kelas_get]);
     }
 
     public function download($filename) {
@@ -162,7 +165,26 @@ class UserController extends Controller
     }
 
     public function displayPost($post_id) {
-        $post = Post::find($post_id);
-        return view('akame.display_post', compact('post'));
+        $this->navbar_change();
+        $post = Post::with('get_video')->where('id', $post_id)->first();
+        return view('akame.display_post', compact('post'))->with(['kelas_arr'=>$this->kelas_arr, 'kelas'=>$this->kelas, 'sub_kelas'=>$this->sub_kelas, 'sub_kelas_get'=>$this->sub_kelas_get]);
+    }
+
+    public function list_materi($post_id) {
+        $this->navbar_change();
+        $post = Post::with('get_video')->where('class_id', $post_id)->get();
+        return view('akame.list_materi', compact('post'))->with(['kelas_arr'=>$this->kelas_arr, 'kelas'=>$this->kelas, 'sub_kelas'=>$this->sub_kelas, 'sub_kelas_get'=>$this->sub_kelas_get]);
+    }
+
+    public function lihat_video($id) {
+        // https://laracasts.com/discuss/channels/laravel/playing-video-problem
+        $this->navbar_change();
+        $video = Video::with('get_post')->find($id);
+        $path = '/storage/materi_video/'. $video->path;
+        return view('akame.lihat_video', compact('video', 'path'))->with(['kelas_arr'=>$this->kelas_arr, 'kelas'=>$this->kelas, 'sub_kelas'=>$this->sub_kelas, 'sub_kelas_get'=>$this->sub_kelas_get]);
+    }
+
+    public function download_video($path) {
+        return Storage::download('public/materi_video/'.$path);
     }
 }

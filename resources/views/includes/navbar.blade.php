@@ -36,7 +36,7 @@
                                                             @if($row_sub_kelas->parent_id == $row_kelas->id)
                                                                 @foreach($sub_kelas_get as $row_sub_kelas_get)
                                                                     @if($row_sub_kelas->id == $row_sub_kelas_get->get_sub_kelas->id)
-                                                                        <li><a href="kelas/{{ $row_sub_kelas->id }}">- {{ $row_sub_kelas->nama }}</a></li>
+                                                                        <li><a href="/list_materi/{{ $row_sub_kelas->id }}">- {{ $row_sub_kelas->nama }}</a></li>
                                                                     @endif
                                                                 @endforeach
                                                             @endif
