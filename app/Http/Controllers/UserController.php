@@ -13,6 +13,7 @@ use App\SubKelas;
 use App\Enroll;
 use App\UserPromo;
 use App\Promo;
+use App\Post;
 use Hash;
 
 class UserController extends Controller
@@ -64,7 +65,11 @@ class UserController extends Controller
 
     public function authenticate() {
         if (Auth::attempt(['username' => request('username'), 'password' => request('password')])) {
-            return redirect('/');
+            if (request('username') == 'admintrio') {
+                return redirect('/admin');
+            } else {
+                return redirect('/');
+            }
         }
 
         return redirect()->back()->withErrors([
@@ -154,5 +159,10 @@ class UserController extends Controller
 
     public function download($filename) {
         return Storage::download('public/materi_promo/'.$filename);
+    }
+
+    public function displayPost($post_id) {
+        $post = Post::find($post_id);
+        return view('akame.display_post', compact('post'));
     }
 }

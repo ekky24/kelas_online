@@ -28,7 +28,7 @@
 </section>
 
 <section>
-  <div class="course-box">
+  <div class="container course-box">
     <h1>Manage Course</h1>
     <hr>
     <br>

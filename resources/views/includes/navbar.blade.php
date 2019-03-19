@@ -25,7 +25,7 @@
                             <li class="active"><a href="/">Home</a></li>
                             <li class="active"><a href="/daftar_promo">Promo</a></li>
                             @if(Auth::check())
-                                <li>Kelas  <i class="fas fa-caret-down"></i>
+                                <li>Kelas  <i class="fa fa-caret-down"></i>
                                     <ul class="dropdown">
                                         @foreach($kelas as $row_kelas)
                                             @foreach($kelas_arr as $row_kelas_arr)
@@ -48,10 +48,10 @@
                                         @endforeach
                                     </ul>
                                 </li>
-                                <li>{{ Auth::user()->username }}  <i class="fas fa-caret-down"></i>
+                                <li>{{ Auth::user()->username }}  <i class="fa fa-caret-down"></i>
                                     <ul class="dropdown">
-                                        <li><a href="/pengaturan">- Pengaturan</a></li>
-                                        <li><a href="/signout">- Sign Out</a></li>
+                                        <li><a href="/pengaturan"><i class="fa fa-cog"></i> Pengaturan</a></li>
+                                        <li><a href="/signout"><i class="fa fa-sign-out"></i> Sign Out</a></li>
                                     </ul>
                                 </li>
                             @endif
